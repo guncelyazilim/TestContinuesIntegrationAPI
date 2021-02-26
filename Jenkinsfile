@@ -3,24 +3,21 @@ node  {
     def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
     try{
 	stage('Restore packages'){
-		steps{
 			bat "dotnet restore TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj"
-		}
+	
 	}	
 	stage('Clean'){
-		steps{
+	
 			bat "dotnet clean TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj"
-		 }
+		 
     }
 	stage('Build'){
-	   steps{
 		  bat "dotnet build TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj --configuration Release"
-		}
+		
     }
 	stage('Publish'){
-     steps{
        bat "dotnet publish TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj "
-     }
+     
 	}
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
