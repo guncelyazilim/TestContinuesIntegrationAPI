@@ -1,3 +1,18 @@
+//Kaynak kodun içerisindeki projenin ismi
+String projectName = "TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI"
+
+//Kaynak kodun publish edileceği dizin
+String publishedPath = "TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI\\bin\\Release\\netcoreapp3.1\\publish"
+
+//Hedef makinesindeki IIS'de tanımlı olan sitenizin ismi
+String iisApplicationName = "TestWebApp"
+
+//Hedef makinesindeki IIS'de tanımlı olan sitenizin dizini
+String iisApplicationPath = "C:\inetpub\wwwroot\ReactVideoApp"
+
+//Hedef makinesinin IP'si
+String targetServerIP = "10.10.16.10"
+
 node  {
     def app
     def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
@@ -12,13 +27,16 @@ node  {
 		 
     }
 	stage('Build'){
-		  bat "dotnet build TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj --configuration Release"
+		  bat "dotnet build TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj --configuration Release /p:Version=${BUILD_NUMBER}"
 		
     }
 	stage('Publish'){
        bat "dotnet publish TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj "
      
 	}
+	stage('Deploy'){
+        withCredentials([usernamePassword(credentialsId: 'iis-credential', usernameVariable: 'GUNCEL\seren.ogur', passwordVariable: 'guncel@123')]) { bat """ "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="${WORKSPACE}\\${publishedPath}" -enableRule:AppOffline -dest:iisApp="${iisApplicationName}",ComputerName="https://${targetServerIP}:8172/msdeploy.axd",UserName="$USERNAME",Password="$PASSWORD",AuthType="Basic" -allowUntrusted"""}
+    }
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
             checkout scm
