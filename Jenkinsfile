@@ -19,24 +19,24 @@ node  {
     try{
 	stage('Restore packages'){
 			bat "dotnet restore TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj"
-	
+	 echo "Restore packages Ok"
 	}	
 	stage('Clean'){
 	
 			bat "dotnet clean TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj"
-		 
+		 echo "Clean Ok"
     }
 	stage('Build'){
 		  bat "dotnet build TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj --configuration Release /p:Version=${BUILD_NUMBER}"
-		
+		echo "Build Ok"
     }
 	stage('Publish'){
        bat "dotnet publish TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj "
-     
+		echo "Publish Ok"
 	}
-	stage('Deploy'){
-        withCredentials([usernamePassword(credentialsId: 'iis-credential', usernameVariable: 'GUNCEL\\seren.ogur', passwordVariable: 'guncel@123')]) { bat """ "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="${WORKSPACE}\\${publishedPath}" -enableRule:AppOffline -dest:iisApp="${iisApplicationName}",ComputerName="https://${targetServerIP}:8172/msdeploy.axd",UserName="$USERNAME",Password="$PASSWORD",AuthType="Basic" -allowUntrusted"""}
-    }
+	
+	
+	
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
             checkout scm
@@ -55,7 +55,10 @@ node  {
             app.push("latest")
       }
     }
-
+	stage('Deploy'){
+        withCredentials([usernamePassword(credentialsId: 'iis-credential', usernameVariable: 'GUNCEL\\seren.ogur', passwordVariable: 'guncel@123')]) { bat """ "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="${WORKSPACE}\\${publishedPath}" -enableRule:AppOffline -dest:iisApp="${iisApplicationName}",ComputerName="https://${targetServerIP}:8172/msdeploy.axd",UserName="$USERNAME",Password="$PASSWORD",AuthType="Basic" -allowUntrusted"""}
+		 echo "Deploy Ok"
+    }
     stage('Restart Application') {
             sh "docker-compose down"
             sh "docker-compose up -d"
