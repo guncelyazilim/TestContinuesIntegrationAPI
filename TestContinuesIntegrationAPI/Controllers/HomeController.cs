@@ -16,6 +16,7 @@ namespace TestContinuesIntegrationAPI.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            //test ediyorum.
         }
 
         public IActionResult Index()
