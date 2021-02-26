@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  web:
+    container_name: dockersample
+    image: serenkaraca/testcontinuesintegrationapi:latest
+    ports:
+      - "5949:80"
