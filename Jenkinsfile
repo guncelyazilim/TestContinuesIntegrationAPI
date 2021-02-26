@@ -2,7 +2,7 @@
 String projectName = "TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI"
 
 //Kaynak kodun publish edileceği dizin
-String publishedPath = "TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI\\bin\\Release\\netcoreapp3.1\\publish"
+String publishedPath = "TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI\\bin\\Release\\netcoreapp3.1"
 
 //Hedef makinesindeki IIS'de tanımlı olan sitenizin ismi
 String iisApplicationName = "TestWebApp"
