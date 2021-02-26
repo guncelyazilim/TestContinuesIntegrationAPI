@@ -8,7 +8,7 @@ String publishedPath = "TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI
 String iisApplicationName = "TestWebApp"
 
 //Hedef makinesindeki IIS'de tanımlı olan sitenizin dizini
-String iisApplicationPath = "C:\inetpub\wwwroot\ReactVideoApp"
+String iisApplicationPath = "C:\\inetpub\wwwroot\\ReactVideoApp"
 
 //Hedef makinesinin IP'si
 String targetServerIP = "10.10.16.10"
