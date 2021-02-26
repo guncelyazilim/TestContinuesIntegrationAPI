@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "M/ml27Kayte/EZ7gxPZvU/uAZz+rGE1q5r9eoNEGJ2sb2AdJMHUED+ps301ThVyzjRPwtrWkg5Qrpg4W4UkubQ==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\TestProjeleri\\TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI\\TestContinuesIntegrationAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\seren.ogur\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}
