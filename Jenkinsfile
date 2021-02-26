@@ -35,7 +35,7 @@ node  {
      
 	}
 	stage('Deploy'){
-        withCredentials([usernamePassword(credentialsId: 'iis-credential', usernameVariable: 'GUNCEL\seren.ogur', passwordVariable: 'guncel@123')]) { bat """ "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="${WORKSPACE}\\${publishedPath}" -enableRule:AppOffline -dest:iisApp="${iisApplicationName}",ComputerName="https://${targetServerIP}:8172/msdeploy.axd",UserName="$USERNAME",Password="$PASSWORD",AuthType="Basic" -allowUntrusted"""}
+        withCredentials([usernamePassword(credentialsId: 'iis-credential', usernameVariable: 'GUNCEL\\seren.ogur', passwordVariable: 'guncel@123')]) { bat """ "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="${WORKSPACE}\\${publishedPath}" -enableRule:AppOffline -dest:iisApp="${iisApplicationName}",ComputerName="https://${targetServerIP}:8172/msdeploy.axd",UserName="$USERNAME",Password="$PASSWORD",AuthType="Basic" -allowUntrusted"""}
     }
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
